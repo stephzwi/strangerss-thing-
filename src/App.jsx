@@ -1,8 +1,9 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+//import Authenticate from "./component/Authenicate";
+import SignUpForm from "./component/SignUpForm";
 import { useEffect } from "react";
 import "./App.css";
+import Authenticate from "./component/Authenicate";
 
 function App() {
   const COHORT_NAME = "2302-ACC-ET-WEB-PT-E";
@@ -10,13 +11,15 @@ function App() {
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(null);
+  console.log(token);
 
   useEffect(() => {
     async function fetchPosts() {
       try {
         const response = await fetch(`${Base_Url}/posts`);
         const result = await response.json();
-        console.log(result);
+        console.log(result.token);
         setPosts(result.data.posts);
       } catch (error) {
         console.error(error);
@@ -28,6 +31,9 @@ function App() {
 
   return (
     <>
+      <Authenticate />
+      <SignUpForm setToken={setToken} />
+
       {loading ? (
         <div>Page Loading</div>
       ) : (
