@@ -35,6 +35,37 @@ export default function SignUpForm({ setToken }) {
     }
   }
 
+  async function handleLogin() {
+    const login = async () => {
+      try {
+        const response = await fetch(
+          "https://strangers-things.herokuapp.com/api/2302-ACC-ET-WEB-PT-E/users/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user: {
+                username: "stephzwi3",
+                password: "Raymond91?",
+              },
+            }),
+          }
+        );
+        const result = await response.json();
+        console.log(result.data._id);
+        console.log(login);
+        console.log("book");
+        console.log(result);
+        return result;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    login();
+  }
+
   return (
     <>
       <h2>Sign Up!</h2>
@@ -56,6 +87,7 @@ export default function SignUpForm({ setToken }) {
           />
         </label>
         <button>Submit</button>
+        <button onClick={handleLogin}>Log In!</button>
       </form>
     </>
   );

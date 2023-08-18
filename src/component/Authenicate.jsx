@@ -25,5 +25,5 @@ export default function Authenticate() {
     myData();
   }, []);
 
-  return <h2>Authenticate!</h2>;
+  return <h2>Log In!</h2>;
 }
